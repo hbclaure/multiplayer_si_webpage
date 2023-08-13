@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Survey</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .question {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .option {
+      width: 23%;
+      margin: 10px;
+      cursor: pointer;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease;
+    }
+
+    .option:hover {
+      transform: scale(1.05);
+    }
+
+    .option img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    .option label {
+      display: block;
+      text-align: center;
+      font-size: 18px;
+      margin-top: 10px;
+    }
+
+    .option.selected {
+      border: 3px solid #3498db;
+    }
+
+    .submit-btn {
+      display: block;
+      margin: 0 auto;
+      padding: 12px 24px;
+      font-size: 20px;
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .submit-btn:hover {
+      background-color: #2187c8;
+    }
+    .option-horizontal {
+    display: flex;
+    flex-direction: column; /* This will align label below radio button */
+    align-items: center; /* This will center both the radio button and label */
+    width: 15%; 
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.option-horizontal {
+  width: 15%; 
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+.options-horizontal {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+
+.option-horizontal label {
+  display: block;
+  text-align: center;
+  font-size: 20px; 
+  margin-top: 10px;
+}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Survey</h1>
+    </div>
+
+    <form id="surveyForm" action="submit.php" method="POST" >
+      <input type="hidden" name="videoName" id="videoName" value="">
+
+      <div class="question-fullfair">      
+
+      <div class="question"> 1.) Reflect on the entire game round you just watched. Based on Nao's actions and decisions up to this moment, how much do you agree with the following statement: "Nao's support towards me was fair."</div>
+      <div class="options-horizontal">
+        <label class="option-horizontal">
+          <input type="radio" name="fullfair" value="1">
+          <label>Strongly Disagree</label>
+        </label>
+        <label class="option-horizontal">
+          <input type="radio" name="fullfair" value="2">
+          <label>Disagree</label>
+        </label>
+        <label class="option-horizontal">
+          <input type="radio" name="fullfair" value="3">
+          <label>Neither Agree nor Disagree</label>
+        </label>
+        <label class="option-horizontal">
+          <input type="radio" name="fullfair" value="4">
+          <label>Agree</label>
+        </label>
+        <label class="option-horizontal">
+          <input type="radio" name="fullfair" value="5">
+          <label>Strongly Agrees</label>
+        </label>
+      </div>
+    </div>
+
+  
+
+    <div class="question-group">
+      <div class="question"> 2.) Which picture best describes Shutter's relationship with the Nao in this round?</div>
+      <div class="options">
+        <div class="row">
+        <div class="option">
+          <input type="radio" name="nao_shutter_relationship" value="1">
+          <img src="img/options1a.png" alt="Option 1">
+          <label>Option 1</label>
+        </div>
+        <div class="option">
+          <input type="radio" name="nao_shutter_relationship" value="2">
+
+          <img src="img/options2a.png" alt="Option 2">
+          <label>Option 2</label>
+        </div>
+        <div class="option">
+          <input type="radio" name="nao_shutter_relationship" value="3">
+
+          <img src="img/options3a.png" alt="Option 3">
+          <label>Option 3</label>
+        </div>
+        <div class="option">
+          <input type="radio" name="nao_shutter_relationship" value="4">
+
+          <img src="img/options4a.png" alt="Option 4">
+          <label>Option 4</label>
+        </div>
+      </div>
+      <div class="row">
+
+        <div class="option">
+          <input type="radio" name="nao_shutter_relationship" value="5">
+
+          <img src="img/options5a.png" alt="Option 5">
+          <label>Option 5</label>
+        </div>
+        <div class="option">
+          <input type="radio" name="nao_shutter_relationship" value="6">
+
+          <img src="img/options6a.png" alt="Option 6">
+          <label>Option 6</label>
+        </div>
+        <div class="option">
+          <input type="radio" name="nao_shutter_relationship" value="7">
+
+          <img src="img/options7a.png" alt="Option 7">
+          <label>Option 7</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    <div class="question-group">
+      <div class="question">3.) Which picture best describes your relationship with the Nao in this round?</div>
+      <div class="options">
+        <div class="row">
+          <div class="option">
+            <input type="radio" name="nao_human_relationship" value="1">
+
+            <img src="img/option1.png" alt="Option 1">
+            <label>Option 1</label>
+          </div>
+          <div class="option">
+            <input type="radio" name="nao_human_relationship" value="2">
+
+            <img src="img/option2.png" alt="Option 2">
+            <label>Option 2</label>
+          </div>
+          <div class="option">
+            <input type="radio" name="nao_human_relationship" value="3">
+
+            <img src="img/option3.png" alt="Option 3">
+            <label>Option 3</label>
+          </div>
+          <div class="option">
+            <input type="radio" name="nao_human_relationship" value="4">
+
+            <img src="img/option4.png" alt="Option 4">
+            <label>Option 4</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="option">
+            <input type="radio" name="nao_human_relationship" value="5">
+
+            <img src="img/option5.png" alt="Option 5">
+            <label>Option 5</label>
+          </div>
+          <div class="option">
+            <input type="radio" name="nao_human_relationship" value="6">
+
+            <img src="img/option6.png" alt="Option 6">
+            <label>Option 6</label>
+          </div>
+          <div class="option">
+            <input type="radio" name="nao_human_relationship" value="7">
+
+            <img src="img/option7.png" alt="Option 7">
+            <label>Option 7</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="question-group">
+      <div class="question">4.) Reflecting on the recently completed round, please rate your perception of the relative support that Nao provided to you and Shutter. Choose the statement that best aligns with your experience:</div>
+      <div class="options-horizontal">
+        <label class="option-horizontal">
+          <input type="radio" name="support" value="1">
+          <span>Nao provided significantly less support to me than Shutter</span>
+        </label>
+        <label class="option-horizontal">
+          <input type="radio" name="support" value="2">
+          <span>Nao provided slightly less support to me than Shutter</span>
+        </label>
+        <label class="option-horizontal">
+          <input type="radio" name="support" value="3">
+          <span>Nao provided equal support to both me and Shutter</span>
+        </label>
+        <label class="option-horizontal">
+          <input type="radio" name="support" value="4">
+          <span>Nao provided slightly more support to me than Shutter</span>
+        </label>
+        <label class="option-horizontal">
+          <input type="radio" name="support" value="5">
+          <span>Nao provided significantly more support to me than Shutter</span>
+        </label>
+      </div>
+    </div>
+
+    
+  </div>
+  <button class="submit-btn" type="submit">Submit</button>
+
+</form>
+  <script>
+    var questionGroups = document.querySelectorAll(".question-group");
+
+    questionGroups.forEach(function(group) {
+      var options = group.querySelectorAll(".option");
+      options.forEach(function(option) {
+        option.addEventListener("click", function() {
+          options.forEach(function(opt) {
+            opt.classList.remove("selected");
+          });
+
+          this.classList.add("selected");
+
+          var radioInput = this.querySelector("input[type='radio']");
+          if (radioInput) {
+            radioInput.checked = true;
+          }
+        });
+      });
+    });
+    function submitSurvey(event) {
+    // Prevent the form from submitting normally
+    event.preventDefault();
+
+if (!validateForm()) {
+    alert("Please make sure all questions have been answered before submitting the form.");
+    return;
+}
+
+    // This will hold our form data
+    let formData = new FormData();
+
+    // Get a reference to the form element
+    let form = document.getElementById('surveyForm');
+
+    // Loop over the form fields and add them to our form data
+    for (let field of form.elements) {
+        if (field.type === "radio" && field.checked || field.type !== "radio") {
+            if (field.name) {
+                formData.append(field.name, field.value);
+            }
+        }
+    }
+
+    // Now we'll send a POST request to the server with our form data
+    fetch('submit.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text()) // change to .text() if server returns text
+    .then(data => {
+        console.log(data);
+        console.log('here')
+        // The request was successful, redirect to the thank you page
+        window.location.href = "thankyou.html";
+    })
+    .catch(error => {
+        // There was an error with the request
+        console.error('Error:', error);
+    });
+}
+
+
+// We need to attach our submit handler to the form's submit event
+// document.getElementById('surveyForm').addEventListener('submit', submitSurvey);
+
+  </script>
+  <script>
+    var questionGroups = document.querySelectorAll(".question-group");
+
+    questionGroups.forEach(function(group) {
+      var options = group.querySelectorAll(".option");
+      options.forEach(function(option) {
+        option.addEventListener("click", function() {
+          options.forEach(function(opt) {
+            opt.classList.remove("selected");
+          });
+
+          this.classList.add("selected");
+
+          var radioInput = this.querySelector("input[type='radio']");
+          if (radioInput) {
+            radioInput.checked = true;
+          }
+        });
+      });
+    });
+    window.onload = function() {
+    fetch('get_video.php')
+        .then(response => response.text())
+        .then(filename => {
+            if (filename !== 'No file found') {
+                var video = document.getElementById("myVideo");
+                var source = document.createElement('source');
+
+                source.setAttribute('src', 'videos/' + filename);
+                source.setAttribute('type', 'video/mp4');
+                console.log(filename)
+
+
+
+                document.getElementById('videoName').value = filename;
+            } else {
+                console.error('Video not found');
+            }
+        });
+};
+
+    function validateForm() {
+        var isValid = true;
+
+        // Loop over each question group to check if a radio button is selected
+        document.querySelectorAll(".question-group").forEach(function(group) {
+            var radioButtons = group.querySelectorAll("input[type='radio']");
+            if (!Array.from(radioButtons).some(radio => radio.checked)) {
+                // If no radio button is checked in the current question group
+                isValid = false;
+            }
+        });
+
+        return isValid;
+    }
+
+    function submitSurvey(event) {
+        // Prevent the form from submitting normally
+
+        event.preventDefault();
+
+
+        if (!validateForm()) {
+            alert("Please make sure all questions have been answered before submitting the form.");
+            return;
+        }
+
+        // This will hold our form data
+        let formData = new FormData();
+
+        // Get a reference to the form element
+        let form = document.getElementById('surveyForm');
+
+        // Loop over the form fields and add them to our form data
+        for (let field of form.elements) {
+            if (field.type === "radio" && field.checked || field.type !== "radio") {
+                if (field.name) {
+                    formData.append(field.name, field.value);
+                }
+            }
+        }
+
+        // Now we'll send a POST request to the server with our form data
+        fetch('submit.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text()) // change to .text() if server returns text
+        .then(data => {
+            console.log(data);
+            console.log('here')
+            // The request was successful, redirect to the thank you page
+            window.location.href = "thankyou.html";
+        })
+        .catch(error => {
+            // There was an error with the request
+            console.error('Error:', error);
+        });
+    }
+
+
+    // We need to attach our submit handler to the form's submit event
+    document.getElementById('surveyForm').addEventListener('submit', submitSurvey);
+
+</script>
+</body>
+</html>

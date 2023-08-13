@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Video Analysis- Midway Point</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet"> 
+    <style>
+      body {
+        text-align: center;
+        font-family: 'Inter', sans-serif;
+        background: #F3F3F3;
+        color: #333;
+      }
+  
+      h1 {
+        margin: 2em 0;
+      }
+  
+      #videoContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 2em auto;
+        max-width: 800px;
+      }
+  
+      #myVideo {
+        width: 100%;
+        max-height: 100%;
+        pointer-events: none;
+      }
+  
+      #sliderContainer {
+      width: 80%;
+      margin: 1em auto;
+      display: flex;
+      align-items: center;
+      flex-direction: row-reverse; /* This keeps the play button on the left and the slider on the right */
+      }
+
+      #timeSlider {
+        flex-grow: 1;
+        margin-left: 10px; /* We switch this to margin-left so that it doesn't collide with the play button */
+      }
+  
+      #playButton {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #3498db;
+        color: #fff;
+        font-size: 24px;
+        line-height: 1;
+        text-align: center;
+        cursor: pointer;
+        margin-right: 10px; /* Add some margin to the right of the play button */
+      }
+
+      #surveyForm {
+        display: flex;
+        flex-wrap: nowrap; /* Prevents the options from wrapping to a new line */
+        justify-content: space-around;
+        margin: 20px auto;
+        padding: 1em;
+        background: #FFF;
+        border-radius: 8px;
+        box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+        max-width: 800px;
+      }
+      .radio-option {
+  display: flex;
+  align-items: center;
+  flex-direction: column;  /* Align items in a column */
+  margin: 10px 0;
+  font-size: 12px; 
+  flex: 1; 
+  justify-content: center;
+}
+      
+      #surveyForm p {
+  width: 100%;
+  text-align: left;
+  font-size: 18px; /* reduce the font size */
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  font-size: 15px; /* reduce the font size */
+  flex: 1; 
+  justify-content: center;
+}
+
+#radio-group,
+#radio-group2,
+#radio-group3,
+#radio-group4,
+#radio-group5  {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; /* Allow the options to wrap to a new line if there isn't enough space */
+  flex-direction: row; /* Align items in a row */
+}
+  
+      #surveyForm input[type="radio"] {
+        margin-right: 10px;
+      }
+  
+      #surveyForm input[type="submit"] {
+        margin: 20px auto;
+        padding: 10px 20px;
+        background: #3498db;
+        color: #FFF;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        transition: 0.3s all ease-in-out;
+      }
+
+      #surveyForm input[type="submit"]:hover {
+        background: #2980b9;
+      }
+      #radio-group {
+  display: flex;
+  justify-content: space-between;  /* This will spread the radio options across the available width */
+  flex-wrap: wrap;  /* This will allow the options to wrap to a new line if there isn't enough space */
+}
+
+
+    </style>
+  </head>
+  <body>
+    <h1>Please watch this video showing parts of your game and answer the question below whenever the video stops.</h1>
+
+    <div id="videoContainer">
+      <video id="myVideo">
+        <!-- <source src="m3_g4.mp4" type="video/mp4"> -->
+      </video>
+    </div>
+
+    <div id="sliderContainer">
+      <input id="timeSlider" type="range" min="0" max="100" value="0">
+      <div id="playButton">&#9658;</div>
+    </div>
+
+    <form id="surveyForm" action="submit.php" method="POST" class="form-horizontal">
+        <!-- Hidden input for video name -->
+      <input type="hidden" name="videoName" id="videoName" value="">
+      <input type="hidden" name="round" id="round" value="">
+      <input type="hidden" name="pausePoint" id="pausePoint" value=""> <!-- New hidden input -->
+
+
+  
+
+      <p id="surveyQuestion">1.) Reflect on the part of the experiment you've watched so far. Based on Nao's actions and decisions up to this moment, how much do you agree with the following statement: "Nao's support towards me was fair."  </p>
+      <div id="radio-group">  <!-- This is the new div that will contain the radio buttons -->
+        <div class="radio-option">
+          <input type="radio" name="fairness" value="1"> Strongly Disagree
+        </div>
+        <div class="radio-option">
+          <input type="radio" name="fairness" value="2"> Disagree
+        </div>
+        <div class="radio-option">
+          <input type="radio" name="fairness" value="3">  Neither Agree nor Disagree
+        </div>
+        <div class="radio-option">
+          <input type="radio" name="fairness" value="4"> Agree
+        </div>
+        <div class="radio-option">
+          <input type="radio" name="fairness" value="5"> Strongly Agrees
+        </div>
+      </div>
+
+<p id="surveyQuestion">2.) Reflect on the part of the experiment you've watched so far. To what extent do you agree with the following statement: "Nao's gameplay strategy significantly reduced my chances of success"?</p>
+<div id="radio-group2">
+    <div class="radio-option">
+      <input type="radio" name="harm" value="1"> Strongly Disagree
+    </div>
+    <div class="radio-option">
+        <input type="radio" name="harm" value="2"> Disagree
+    </div>
+
+    <div class="radio-option">
+        <input type="radio" name="harm" value="3"> Neither Agree nor Disagree
+    </div>
+    <div class="radio-option">
+        <input type="radio" name="harm" value="4"> Agree
+    </div>
+    <div class="radio-option">
+        <input type="radio" name="harm" value="5"> Strongly Agree
+    </div>
+
+</div>
+
+<p id="surveyQuestion">3.) Reflect on the part of the experiment you've watched so far. To what extent do you agree with the following statement: "Nao has provided significantly more help to Shutter than to me".</p>
+<div id="radio-group3">
+    <div class="radio-option">
+      <input type="radio" name="harm2" value="1"> Strongly Disagree
+    </div>
+    <div class="radio-option">
+        <input type="radio" name="harm2" value="2"> Disagree
+    </div>
+
+    <div class="radio-option">
+        <input type="radio" name="harm2" value="3"> Neither Agree nor Disagree
+    </div>
+    <div class="radio-option">
+        <input type="radio" name="harm2" value="4"> Agree
+    </div>
+    <div class="radio-option">
+        <input type="radio" name="harm2" value="5"> Strongly Agree
+    </div>
+
+</div>
+
+<p id="surveyQuestion">4.) Reflect on the specific point of the game we've just paused at. How strongly do you feel that the robot had feasible alternatives to its actions in this part of the game?</p>
+<div id="radio-group4">
+    <div class="radio-option">
+      <input type="radio" name="feasibility" value="1"> Not at all 
+    </div>
+    <div class="radio-option">
+        <input type="radio" name="feasibility" value="2"> Slightly 
+    </div>
+
+    <div class="radio-option">
+        <input type="radio" name="feasibility" value="3"> Neutral 
+    </div>
+    <div class="radio-option">
+        <input type="radio" name="feasibility" value="4"> Strongly 
+    </div>
+    <div class="radio-option">
+        <input type="radio" name="feasibility" value="5"> Very Strongly 
+    </div>
+
+</div>
+
+
+<p id="surveyQuestion">5.)Reflecting on the game up to the point we've just paused, how would you rate the social appropriateness of the robot's decisions in the context of the competition between yourself and Shutter? Here, 'social appropriateness' refers to how fitting or suitable the robot's actions are within this competitive context.  </p>
+<div id="radio-group5">
+    <div class="radio-option">
+      <input type="radio" name="appropriateness" value="1"> Highly inappropriate 
+    </div>
+    <div class="radio-option">
+        <input type="radio" name="appropriateness" value="2">  Somewhat inappropriate
+    </div>
+
+    <div class="radio-option">
+        <input type="radio" name="appropriateness" value="3"> Neither appropriate nor inappropriate
+    </div>
+    <div class="radio-option">
+        <input type="radio" name="appropriateness" value="4"> Somewhat appropriate
+    </div>
+    <div class="radio-option">
+        <input type="radio" name="appropriateness" value="5"> Highly appropriate
+    </div>
+
+</div>
+
+      
+      <input type="submit" value="Submit">
+    </form>
+      
+   
+
+    <script>
+      
+
+document.addEventListener("DOMContentLoaded", function() {
+  var round = 1
+
+
+    var video = document.getElementById("myVideo");
+    var timeSlider = document.getElementById("timeSlider");
+    var playButton = document.getElementById("playButton");
+    var surveyQuestion = document.getElementById("surveyQuestion");
+    var surveyForm = document.getElementById("surveyForm");
+      // Set initial display styles
+  surveyForm.style.display = 'none';
+  surveyQuestion.style.display = 'none';
+
+
+    video.addEventListener("ended", function() {
+  window.location.href = "survey.html";
+});
+fetch('get_video.php') // URL to the PHP script
+  .then(response => response.text())
+  .then(filename => {
+    if (filename !== 'No file found') {
+      var video = document.getElementById("myVideo");
+      var source = document.createElement('source');
+      console.log('filename', filename)
+
+      source.setAttribute('src', 'videos/' + filename); // Update the path accordingly
+      source.setAttribute('type', 'video/mp4');
+
+      video.appendChild(source);
+      video.load(); // Load the new video
+
+      document.getElementById('videoName').value = filename; // <- Add this line here
+      document.getElementById('round').value = round; // <- Add this line here
+      
+      
+
+    } else {
+      // Handle error
+      console.error('Video not found');
+    }
+  });
+
+    video.addEventListener("loadedmetadata", function() {
+      var startTime = 0; // Set the start time 5 seconds before the halfway point
+      var endTime = video.duration; // Set the end time 10 seconds after the halfway point
+      var pointOne = 2;
+      var pointTwo = 47;
+      var pointThree = 93;
+ 
+
+      video.addEventListener("timeupdate", function() {
+        console.log(video.currentTime)
+        if (video.currentTime < startTime || video.currentTime > endTime) {
+          video.currentTime = startTime; // Jump back to the start of the clipped range
+        }
+      });
+
+      // Update the slider position based on video playback
+      video.addEventListener("timeupdate", function() {
+        var progress = (video.currentTime - startTime) / (endTime - startTime) * 100;
+        timeSlider.value = progress;
+      });
+
+      // Update the video playback based on slider position
+      timeSlider.addEventListener("input", function() {
+        var progressTime = (timeSlider.value / 100) * (endTime - startTime) + startTime;
+        video.currentTime = progressTime;
+      });
+
+      // Play button functionality
+      playButton.addEventListener("click", function() {
+        if (video.paused) {
+          video.play();
+          playButton.innerHTML = "&#10074;&#10074;"; // Change the play button icon to pause
+        } else {
+          video.pause();
+          playButton.innerHTML = "&#9658;"; // Change the play button icon to play
+        }
+      });
+
+
+      video.addEventListener("timeupdate", function() {
+
+      if (Math.floor(video.currentTime) === pointOne || Math.floor(video.currentTime) === pointTwo || Math.floor(video.currentTime) === pointThree) {
+        var currentPoint = Math.floor(video.currentTime);
+        if (Math.floor(video.currentTime) === pointOne){
+          document.getElementById("pausePoint").value = "beginning";
+
+      }
+      else if (Math.floor(video.currentTime) === pointTwo){
+        document.getElementById("pausePoint").value = "middle";
+
+
+
+      }
+      else {
+        document.getElementById("pausePoint").value = "end";
+
+      }
+
+
+
+
+        // document.getElementById("pausePoint").value = currentPoint;
+
+
+        setTimeout(function() {
+        video.pause();
+        playButton.style.display = 'none';
+        timeSlider.style.display = 'none';
+        playButton.innerHTML = "&#9658;"; // Change the play button icon to play
+        }, 900);
+
+
+        setTimeout(function() {
+        surveyForm.style.display = 'block';
+        surveyQuestion.style.display = 'block';
+        window.scrollTo({ behavior: "smooth", left: 0, top: 600 });
+        }, 2000);
+      
+      }
+
+});
+
+    var surveyTracker = 0;
+    surveyForm.addEventListener("submit", function(event) {
+
+
+var radioNames = ['fairness', 'harm','harm2', 'feasibility', 'appropriateness'];  // Add the names of your radio button groups here
+
+for (var j = 0; j < radioNames.length; j++) {
+  var radioButtons = document.getElementsByName(radioNames[j]);
+
+  // Check if any radio button is selected
+  var isChecked = false;
+  for (var i = 0; i < radioButtons.length; i++) {
+    if (radioButtons[i].checked) {
+      isChecked = true;
+      break;
+    }
+  }
+
+  // If no radio button is selected, stop the form submission
+  if (!isChecked) {
+    event.preventDefault();
+    alert('Please select an option for each question before submitting the survey.');
+    return;
+  }
+}
+  
+  event.preventDefault(); // Prevent the form from submitting
+
+
+  // Create a new FormData object from the form
+  var formData = new FormData(surveyForm);
+
+  // Use the Fetch API to send the form data to the server
+  fetch('fairness_submit.php', {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return response.text();
+  })
+  .then(data => {
+    console.log('Success:', data);
+    // After successfully storing the response, resume the video
+    playButton.style.display = 'block';
+    timeSlider.style.display = 'block';
+    playButton.innerHTML = "&#10074;&#10074;"; // Change the play button icon to pause
+
+    video.play(); // Add this line
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+
+  // Proceed with the rest of your existing code
+  document.getElementById("surveyForm").reset();
+  surveyForm.style.display = 'none';
+  surveyQuestion.style.display = 'none';
+  window.scrollTo({ behavior: "smooth", left: 0, top: 100 }); 
+});
+
+
+    });
+
+});
+    </script>
+  </body>
+</html>

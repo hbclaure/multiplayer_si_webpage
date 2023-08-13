@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Thank You</title>
+  <style>
+    body {
+      text-align: center;
+      overflow: hidden; /* This disables scrolling on the parent page */
+    }
+
+    h1 {
+      margin-top: 150px;
+      font-size: 24px;
+    }
+
+    iframe {
+      width: 80%;
+      height: 900px;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <iframe id="qualtricsFrame" src="https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_eF3vhZoxXjo4MSO"></iframe>
+</body>
+<script>
+window.onload = function() {
+  fetch('get_video.php')
+      .then(response => response.text())
+      .then(filename => {
+          if (filename !== 'No file found') {
+              filename = filename.replace('.mp4', '');
+
+
+              // Update the iframe's src attribute to include the filename
+              var iframe = document.getElementById('qualtricsFrame');
+              iframe.src = "https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_eF3vhZoxXjo4MSO?my_variable=" + filename;
+
+              // Call the server-side script to delete the video
+              console.log(filename)
+              fetch('delete_video.php?filename=' + filename)
+                  .then(response => response.text())
+                  .then(message => {
+                      console.log(message); // Log the server's response (e.g., "File deleted successfully")
+                  });
+
+          } else {
+              console.error('Video not found');
+          }
+      });
+};
+</script>
+</html>

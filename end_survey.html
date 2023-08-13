@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Survey</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .question {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .options {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .option {
+      margin: 10px;
+      cursor: pointer;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease;
+    }
+
+    .option:hover {
+      transform: scale(1.05);
+    }
+
+    .option img {
+      width: 250px;
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .option label {
+      display: block;
+      text-align: center;
+      font-size: 18px;
+      margin-top: 10px;
+    }
+
+    .option.selected {
+      border: 3px solid #3498db; /* Use a color that contrasts well with the background */
+    }
+
+    .submit-btn {
+      display: block;
+      margin: 0 auto;
+      padding: 12px 24px;
+      font-size: 20px;
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .submit-btn:hover {
+      background-color: #2187c8;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Survey</h1>
+      <p>Please answer the following questions:</p>
+    </div>
+
+    <div class="question-group">
+      <div class="question">Which picture best describes your relationship with the Nao?</div>
+      <div class="options">
+        <div class="option">
+          <img src="option1.png" alt="Option 1">
+          <label>Option 1</label>
+        </div>
+        <div class="option">
+          <img src="option2.png" alt="Option 2">
+          <label>Option 2</label>
+        </div>
+        <div class="option">
+          <img src="option3.png" alt="Option 3">
+          <label>Option 3</label>
+        </div>
+        <div class="option">
+          <img src="option4.png" alt="Option 4">
+          <label>Option 4</label>
+        </div>
+        <div class="option">
+          <img src="option5.png" alt="Option 5">
+          <label>Option 5</label>
+        </div>
+        <div class="option">
+          <img src="option6.png" alt="Option 6">
+          <label>Option 6</label>
+        </div>
+        <div class="option">
+          <img src="options7.png" alt="Option 7">
+          <label>Option 7</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="question-group">
+      <div class="question">Which picture best describes Shutter's relationship with the Nao?</div>
+      <div class="options">
+        <div class="option">
+          <img src="options1a.png" alt="Option 1">
+          <label>Option 1</label>
+        </div>
+        <div class="option">
+          <img src="options2a.png" alt="Option 2">
+          <label>Option 2</label>
+        </div>
+        <div class="option">
+          <img src="options3a.png" alt="Option 3">
+          <label>Option 3</label>
+        </div>
+        <div class="option">
+          <img src="options4a.png" alt="Option 4">
+          <label>Option 4</label>
+        </div>
+        <div class="option">
+          <img src="options5a.png" alt="Option 5">
+          <label>Option 5</label>
+        </div>
+        <div class="option">
+          <img src="options6a.png" alt="Option 6">
+          <label>Option 6</label>
+        </div>
+        <div class="option">
+          <img src="options7a.png" alt="Option 7">
+          <label>Option 7</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="question-group">
+      <div class="question">How would you rate your trust towards the Nao?</div>
+      <div class="options">
+        <label class="option">
+          <input type="radio" name="trust" value="Distrust completely">
+          <label>Distrust completely</label>
+        </label>
+        <label class="option">
+          <input type="radio" name="trust" value="Distrust somewhat">
+          <label>Distrust somewhat</label>
+        </label>
+        <label class="option">
+          <input type="radio" name="trust" value="Neutral">
+          <label>Neutral</label>
+        </label>
+        <label class="option">
+          <input type="radio" name="trust" value="Trust somewhat">
+          <label>Trust somewhat</label>
+        </label>
+        <label class="option">
+          <input type="radio" name="trust" value="Trust completely">
+          <label>Trust completely</label>
+        </label>
+      </div>
+    </div>
+
+    <button class="submit-btn" onclick="submitSurvey()">Submit</button>
+  </div>
+
+  <script>
+    var questionGroups = document.querySelectorAll(".question-group");
+
+    questionGroups.forEach(function(group) {
+      var options = group.querySelectorAll(".option");
+      options.forEach(function(option) {
+        option.addEventListener("click", function() {
+          options.forEach(function(opt) {
+            opt.classList.remove("selected");
+          });
+
+          this.classList.add("selected");
+
+          var radioInput = this.querySelector("input[type='radio']");
+          if (radioInput) {
+            radioInput.checked = true;
+          }
+        });
+      });
+    });
+    function submitSurvey() {
+      // Implement any additional logic here if needed...
+
+      // Redirect to the end_survey.html page
+      window.location.href = "end_survey.html";
+    }
+  </script>
+</body>
+</html>
